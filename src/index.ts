@@ -4,7 +4,7 @@
 //   streetAddressPostCode: string;
 // };
 
-const fetchApi = async <T>(
+const fetchApi = async (
   maxResults: number,
   resultFrom: number,
   streetAddressPostCode: string
@@ -13,7 +13,7 @@ const fetchApi = async <T>(
     `http://avoindata.prh.fi/bis/v1?totalResults=false&maxResults=${maxResults}&resultsFrom=${resultFrom}&streetAddressPostCode=${streetAddressPostCode}`
   );
   const data = await response.json();
-  const result: T[] = data.results;
+  const result = data.results;
   console.log(result);
   return result;
 };
