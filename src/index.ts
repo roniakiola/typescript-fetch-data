@@ -1,4 +1,4 @@
-import Company from './types';
+import { Details, Company } from './types';
 
 const fetchAllCompanies = async (
   maxResults: number,
@@ -15,16 +15,15 @@ const fetchAllCompanies = async (
     const businessId = obj[firstKey] as string;
     fetchCompany(businessId);
   });
-  return result;
 };
 
 const fetchCompany = async (businessId: string) => {
   const response = await fetch(`http://avoindata.prh.fi/bis/v1/${businessId}`);
   const data = await response.json();
-  const result = await data.results[0];
+  const result: Details = await data.results[0];
   console.log(result);
   return result;
 };
 
-fetchAllCompanies(5, 1, '00200');
+fetchAllCompanies(3, 0, '00200');
 // fetchCompany('3346624-5');
